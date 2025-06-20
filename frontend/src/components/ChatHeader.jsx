@@ -3,10 +3,13 @@ import { X } from "lucide-react";
 import {useChatStore} from '../store/useChatStore.js'
 import {useAuthStore} from '../store/useAuthStore.js'
 function ChatHeader() {
-    const {selectedUser,setSelectedUser} = useChatStore();
+    const {selectedUser,setSelectedUser,selectedGroup,setSelectedGroup} = useChatStore();
     const {onlineUsers} = useAuthStore();
   return (
-    <div className="p-2.5 border-b border-base-300" >
+   <>
+    {selectedUser && !selectedGroup && (
+
+        <div className="p-2.5 border-b border-base-300" >
      <div className="flex items-center justify-between">
         <div className="flex items-center gap-3">
             <div className="avatar">
@@ -26,6 +29,37 @@ function ChatHeader() {
             <button onClick={()=> setSelectedUser(null)}><X/></button>
         </div>
      </div>
+    )}
+
+    {!selectedUser && selectedGroup && (
+
+        <div className="p-2.5 border-b border-base-300" >
+     <div className="flex items-center justify-between">
+        <div className="flex items-center gap-3">
+            <div className="avatar">
+                <div className="size-10 rounded-full relative">
+                    <img src={"/avatar.png"} alt={selectedGroup.name}/>
+                </div>
+                </div>
+
+                {/* use info */}
+                <div>
+                    <h3 className="font-medium">{selectedGroup.name}</h3>
+                   <span className="text-sm text-gray-600">
+  ({selectedGroup?.members?.length || 0} members)
+</span>
+                </div>    
+        </div>
+
+            {/* close  button */}
+            <button onClick={()=> setSelectedGroup(null)}><X/></button>
+        </div>
+     </div>
+    )}
+   
+   </>
+   
+    
   )
 }
 

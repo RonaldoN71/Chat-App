@@ -100,7 +100,7 @@ const handleCreate = () => {
               >
               + Create Group
           </button>
-          <div className="mr-3 text-white font-bold cursor-pointer" onClick={() => setShowCreateGroup(false)}><h1>X</h1></div>
+          
         </div>
             
           <h3 className="font-medium text-white">Groups:</h3>
@@ -121,7 +121,8 @@ const handleCreate = () => {
  </div>
 
          {showCreateGroup && (
-  <div className="p-4 rounded-lg mt-2">
+  <div className="p-4 rounded-lg mt-2 relative">
+    <div className="absolute top-0 right-2 text-white font-bold cursor-pointer" onClick={() => setShowCreateGroup(false)}><h1>X</h1></div>
     <input 
       type="text" 
       placeholder="Group Name" 

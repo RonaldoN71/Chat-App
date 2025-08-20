@@ -93,13 +93,17 @@ const handleCreate = () => {
             )}
         </div>
         <div className="border-t border-base-400 w-full p-1 mt-3">
-            <button 
+        <div className="flex">
+        <button 
                onClick={() => setShowCreateGroup(true)} 
               className="w-full   text-white rounded-lg"
               >
               + Create Group
           </button>
-          <h3 className="font-medium">Groups</h3>
+          <div className="mr-3 text-white font-bold cursor-pointer" onClick={() => setShowCreateGroup(false)}><h1>X</h1></div>
+        </div>
+            
+          <h3 className="font-medium text-white">Groups:</h3>
   {groups.map((group) => (
   <button
     key={group._id}
@@ -111,13 +115,13 @@ const handleCreate = () => {
     `}
   >
     <div className="font-semibold truncate">{group.name}</div>
-    <span className="text-sm text-gray-600">({group.members.length} members)</span>
+    <span className="text-sm text-white">({group.members.length} members)</span>
   </button>
 ))}
  </div>
 
          {showCreateGroup && (
-  <div className="p-4 bg-gray-100 rounded-lg mt-2">
+  <div className="p-4 rounded-lg mt-2">
     <input 
       type="text" 
       placeholder="Group Name" 
@@ -131,8 +135,9 @@ const handleCreate = () => {
             type="checkbox" 
             value={user._id} 
             onChange={(e) => handleUserSelection(e, user._id)}
+            className=" bg-white w-3 h-3 checkbox rounded-none"
           />
-          {user.fullName}
+          <span className="text-white">{user.fullName}</span>
         </label>
       ))}
     </div>
